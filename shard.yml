@@ -1,0 +1,13 @@
+name: cresult
+version: 0.1.0
+
+authors:
+  - Joakim Repomaa <mail@j.repomaa.com>
+
+targets:
+  bench:
+    main: bench/benchmark.cr
+
+crystal: 0.32.0
+
+license: MIT
