@@ -15,14 +15,17 @@ exceptions frequently enough, you might consider using this shard.
 Enough talk, time for irrelevant micro benchmarks!
 
 ```
-with exception 472.56k (  2.12µs) (±13.07%)  185B/op  514.79× slower
-   with result 243.27M (  4.11ns) (± 8.22%)  0.0B/op         fastest
+with exception 490.50k (  2.04µs) (± 5.69%)  185B/op  537.16× slower
+   with result 262.98M (  3.80ns) (± 4.84%)  0.0B/op    1.00× slower
+   never raise 251.48M (  3.98ns) (± 1.94%)  0.0B/op    1.05× slower
+     never Err 263.48M (  3.80ns) (± 3.03%)  0.0B/op         fastest
 ```
 
 This is quite something! Please note though, that here statistically every
 second call throws an exception (or results in an Err). This is a big percentage
 and your real world application will have a much lower error rate and as such
-the difference won't be as dramatic.
+the difference won't be as dramatic. What's more: even for methods that never
+raise (or produce an Err) there's no overhead!
 
 ## Installation
 
