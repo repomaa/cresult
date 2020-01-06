@@ -6,7 +6,7 @@ authors:
 
 targets:
   bench:
-    main: bench/benchmark.cr
+    main: src/benchmark.cr
 
 crystal: 0.32.0
 

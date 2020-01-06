@@ -8,7 +8,7 @@ def with_exception_level_100
 end
 
 def with_result_level_100
-  Ok[rand.tap { |number| return Err["invalid result"] }]
+  Ok[rand.tap { |number| return Err["invalid result"] if number > 0.5 }]
 end
 
 {% for i in 1..99 %}
@@ -23,6 +23,14 @@ end
   end
 {% end %}
 
+def never_raise
+  rand.tap { |number| raise "invalid result" if number < 0.0 }
+end
+
+def never_err
+  Ok[rand.tap { |number| return Err["invalid result"] if number < 0.0 }]
+end
+
 Benchmark.ips do |x|
   x.report("with exception") do
     begin
@@ -33,6 +41,20 @@ Benchmark.ips do |x|
 
   x.report("with result") do
     result = with_result_level_1
+    case result
+    when Ok then result.unwrap + 1
+    end
+  end
+
+  x.report("never raise") do
+    begin
+      never_raise + 1
+    rescue
+    end
+  end
+
+  x.report("never Err") do
+    result = never_err
     case result
     when Ok then result.unwrap + 1
     end
