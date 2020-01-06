@@ -7,8 +7,7 @@ Crystal.
 ## Why and when should you be using it?
 
 Raising exceptions is expensive: The stack pointer must be saved, an interrupt
-is triggered, the exception handler is called, and so forth. Methods that throw
-exceptions are harder to optimize by the compiler through inlining.
+is triggered, the exception handler is called, and so forth.
 
 If you deal with a lot of unsafe runtime inputs or anything else that throws
 exceptions frequently enough, you might consider using this shard.
